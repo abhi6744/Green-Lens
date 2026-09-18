@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans text-gray-800 bg-gray-50;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-forest-700 text-white px-6 py-3 rounded-lg font-semibold 
+           hover:bg-forest-800 active:bg-forest-900 transition-all duration-200
+           disabled:opacity-50 disabled:cursor-not-allowed
+           focus:outline-none focus:ring-2 focus:ring-forest-500 focus:ring-offset-2;
+  }
+  
+  .btn-secondary {
+    @apply bg-white text-forest-700 border border-forest-300 px-6 py-3 rounded-lg font-semibold
+           hover:bg-forest-50 active:bg-forest-100 transition-all duration-200
+           disabled:opacity-50 disabled:cursor-not-allowed
+           focus:outline-none focus:ring-2 focus:ring-forest-500 focus:ring-offset-2;
+  }
+
+  .card {
+    @apply bg-white rounded-2xl shadow-sm border border-gray-100;
+  }
+
+  .kpi-card {
+    @apply card p-5 flex items-start gap-4;
+  }
+
+  .map-card {
+    @apply card overflow-hidden;
+  }
+
+  .section-title {
+    @apply text-2xl font-bold text-gray-900 mb-1;
+  }
+
+  .section-subtitle {
+    @apply text-sm text-gray-500 mb-6;
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+  
+  .scrollbar-thumb-forest {
+    scrollbar-color: #2d6e31 transparent;
+  }
+}
+
+/* Drag and drop zone */
+.drop-zone-active {
+  @apply border-forest-500 bg-forest-50;
+}
+
+/* Progress bar animation */
+@keyframes progress-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.progress-animate {
+  animation: progress-pulse 1.5s ease-in-out infinite;
+}
+
+/* Image overlay for maps */
+.image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
