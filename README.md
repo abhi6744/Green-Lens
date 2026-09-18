@@ -107,3 +107,4 @@ project/
 4. **Inference:** Each patch is resized to 224x224 and passed through the ResNet50 model to classify its land-cover type.
 5. **Change Detection:** Deforestation is flagged wherever a patch transitions from `Forest` in the old image to `AnnualCrop`, `Pasture`, `Industrial`, `Residential`, or `PermanentCrop` in the new image.
 6. **Rendering:** The UI fetches the JSON metadata and image assets (generated headless via Matplotlib) and renders the dashboard.
+"# Green-Lens" 
