@@ -40,26 +40,26 @@ function PatchDetail({ patch }: PatchDetailProps) {
         </div>
 
         <div className="grid grid-cols-2 gap-3">
-          <div className="p-3 rounded-xl border border-gray-100">
+          <div className="p-3 rounded-xl border border-gray-100 min-w-0">
             <p className="text-xs text-gray-500 mb-1">Old Class</p>
-            <div className="flex items-center gap-2">
+            <div className="flex items-start gap-1.5 min-w-0">
               <div
-                className="w-3 h-3 rounded-sm flex-shrink-0"
+                className="w-3 h-3 rounded-sm flex-shrink-0 mt-0.5"
                 style={{ backgroundColor: CLASS_COLORS[patch.old_class] }}
               />
-              <p className="font-semibold text-gray-900 text-sm">{patch.old_class}</p>
+              <p className="font-semibold text-gray-900 text-xs leading-tight break-words min-w-0">{patch.old_class}</p>
             </div>
             <p className="text-xs text-gray-400 mt-1">Conf: {(patch.old_confidence * 100).toFixed(1)}%</p>
           </div>
 
-          <div className="p-3 rounded-xl border border-gray-100">
+          <div className="p-3 rounded-xl border border-gray-100 min-w-0">
             <p className="text-xs text-gray-500 mb-1">New Class</p>
-            <div className="flex items-center gap-2">
+            <div className="flex items-start gap-1.5 min-w-0">
               <div
-                className="w-3 h-3 rounded-sm flex-shrink-0"
+                className="w-3 h-3 rounded-sm flex-shrink-0 mt-0.5"
                 style={{ backgroundColor: CLASS_COLORS[patch.new_class] }}
               />
-              <p className="font-semibold text-gray-900 text-sm">{patch.new_class}</p>
+              <p className="font-semibold text-gray-900 text-xs leading-tight break-words min-w-0">{patch.new_class}</p>
             </div>
             <p className="text-xs text-gray-400 mt-1">Conf: {(patch.new_confidence * 100).toFixed(1)}%</p>
           </div>

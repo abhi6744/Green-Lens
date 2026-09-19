@@ -163,9 +163,12 @@ def _process_job(
 
         # Determine pixel resolution for area
         pixel_size_m = meta_old.get("pixel_size_m") or DEFAULT_RESOLUTION_M
+        _used_fallback = meta_old.get("pixel_size_degrees") or meta_old.get("format") != "GeoTIFF"
         area_source = (
             "GeoTIFF pixel resolution"
-            if meta_old.get("format") == "GeoTIFF" and meta_old.get("pixel_size_m")
+            if meta_old.get("format") == "GeoTIFF" and not meta_old.get("pixel_size_degrees")
+            else "Notebook fallback (10 m/pixel) — geographic CRS detected"
+            if meta_old.get("pixel_size_degrees")
             else "Notebook fallback resolution: 10 m/pixel"
         )
 
@@ -308,17 +311,17 @@ async def create_analysis(
     # Validate file extensions
     old_ext = Path(old_image.filename or "").suffix.lower()
     new_ext = Path(new_image.filename or "").suffix.lower()
-    allowed = {".tif", ".tiff", ".geotiff", ".png", ".jpg", ".jpeg"}
+    allowed = {".tif", ".tiff", ".geotiff"}
 
     if old_ext not in allowed:
         raise HTTPException(
             status_code=422,
-            detail=f"Unsupported format for old image: '{old_ext}'. Supported: GeoTIFF, TIFF, PNG, JPG."
+            detail=f"Unsupported format for old image: '{old_ext}'. Only GeoTIFF/TIFF files are accepted (.tif, .tiff, .geotiff)."
         )
     if new_ext not in allowed:
         raise HTTPException(
             status_code=422,
-            detail=f"Unsupported format for new image: '{new_ext}'. Supported: GeoTIFF, TIFF, PNG, JPG."
+            detail=f"Unsupported format for new image: '{new_ext}'. Only GeoTIFF/TIFF files are accepted (.tif, .tiff, .geotiff)."
         )
 
     job_id = str(uuid.uuid4())

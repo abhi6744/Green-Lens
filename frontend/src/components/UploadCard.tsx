@@ -11,13 +11,13 @@ interface UploadCardProps {
   disabled?: boolean;
 }
 
-const ALLOWED_EXTENSIONS = ['.tif', '.tiff', '.geotiff', '.png', '.jpg', '.jpeg'];
+const ALLOWED_EXTENSIONS = ['.tif', '.tiff', '.geotiff'];
 const MAX_SIZE_MB = 500;
 
 function validateFile(file: File): string | null {
   const ext = '.' + file.name.split('.').pop()?.toLowerCase();
   if (!ALLOWED_EXTENSIONS.includes(ext)) {
-    return `Unsupported format. Please upload GeoTIFF, TIFF, PNG, or JPG.`;
+    return `Unsupported format. Please upload a GeoTIFF or TIFF file (.tif, .tiff, .geotiff).`;
   }
   if (file.size > MAX_SIZE_MB * 1024 * 1024) {
     return `File too large. Maximum size is ${MAX_SIZE_MB} MB.`;
@@ -35,20 +35,8 @@ export default function UploadCard({ label, sublabel, badge, value, onChange, di
       onChange({ ...value, file: null, preview: null, error: err });
       return;
     }
-
-    // Create preview for images
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const ext = '.' + file.name.split('.').pop()?.toLowerCase();
-      const isTiff = ['.tif', '.tiff', '.geotiff'].includes(ext);
-      onChange({
-        ...value,
-        file,
-        preview: isTiff ? null : (e.target?.result as string),
-        error: null,
-      });
-    };
-    reader.readAsDataURL(file);
+    // GeoTIFF files have no browser-renderable preview
+    onChange({ ...value, file, preview: null, error: null });
   }, [value, onChange]);
 
   const handleDrop = useCallback((e: React.DragEvent) => {
@@ -126,14 +114,14 @@ export default function UploadCard({ label, sublabel, badge, value, onChange, di
             or <span className="text-forest-600 font-medium">click to browse</span>
           </p>
           <p className="text-xs text-gray-400 mt-3">
-            Supported: GeoTIFF, TIFF, PNG, JPG
+            Supported: GeoTIFF / TIFF only
             <br />
             Max size: {MAX_SIZE_MB} MB
           </p>
           <input
             ref={inputRef}
             type="file"
-            accept=".tif,.tiff,.geotiff,.png,.jpg,.jpeg"
+            accept=".tif,.tiff,.geotiff"
             className="hidden"
             onChange={(e) => {
               const file = e.target.files?.[0];
@@ -182,7 +170,7 @@ export default function UploadCard({ label, sublabel, badge, value, onChange, di
           <input
             ref={inputRef}
             type="file"
-            accept=".tif,.tiff,.geotiff,.png,.jpg,.jpeg"
+            accept=".tif,.tiff,.geotiff"
             className="hidden"
             onChange={(e) => {
               const file = e.target.files?.[0];

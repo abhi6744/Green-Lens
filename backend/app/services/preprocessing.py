@@ -41,6 +41,15 @@ def _load_geotiff(file_path: str) -> Tuple[np.ndarray, Any, Any, Dict]:
             pixel_size_x = abs(transform.a)  # metres per pixel (for Sentinel-2, ~10m)
             pixel_size_y = abs(transform.e)
 
+            # Detect if resolution is in degrees (geographic CRS) instead of metres.
+            # Degree-based pixel sizes are typically tiny (e.g. 0.0001), whereas
+            # metric pixel sizes are >= 1.0 m. If degrees, fall back to 10 m/pixel.
+            _is_degrees = pixel_size_x < 1.0
+            if _is_degrees:
+                pixel_size_m_resolved = 10.0   # Sentinel-2 default (metres)
+            else:
+                pixel_size_m_resolved = float(pixel_size_x)
+
             crs_info = str(crs) if crs else "unknown"
 
             metadata = {
@@ -51,7 +60,8 @@ def _load_geotiff(file_path: str) -> Tuple[np.ndarray, Any, Any, Dict]:
                 "crs_info": crs_info,
                 "pixel_size_x": float(pixel_size_x),
                 "pixel_size_y": float(pixel_size_y),
-                "pixel_size_m": float(pixel_size_x),  # assumed square pixels
+                "pixel_size_m": pixel_size_m_resolved,  # always in metres
+                "pixel_size_degrees": _is_degrees,
                 "transform": list(transform)[:6],
             }
 
