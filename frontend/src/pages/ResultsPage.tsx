@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import {
-  Download, RefreshCw, TreePine, TrendingDown, Grid3X3,
+  Download, RefreshCw, TrendingDown, Grid3X3,
   Star, AlertTriangle, ZoomIn, Maximize2, Info, ChevronRight
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
@@ -169,7 +169,7 @@ export default function ResultsPage() {
 
   const {
     old_year, new_year, region, deforested_patches, total_patches,
-    deforestation_rate_pct, estimated_area_km2,
+    deforestation_rate_pct,
     class_distribution_old, class_distribution_new, transition_counts,
     model_confidence_avg, maps, warnings, area_source,
     changed_patches,
@@ -240,15 +240,8 @@ export default function ResultsPage() {
           </div>
         )}
 
-        {/* KPI Row */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-          <KpiCard
-            icon={TreePine}
-            iconBg="bg-green-100 text-green-700"
-            label="Deforested Area"
-            value={`${estimated_area_km2.toFixed(2)} km²`}
-            sub="Based on detected forest-to-target transitions"
-          />
+        {/* KPI Row — 3 cards centered */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8 max-w-3xl mx-auto w-full">
           <KpiCard
             icon={TrendingDown}
             iconBg="bg-red-100 text-red-700"
