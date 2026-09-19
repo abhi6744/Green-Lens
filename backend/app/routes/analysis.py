@@ -167,7 +167,7 @@ def _process_job(
         area_source = (
             "GeoTIFF pixel resolution"
             if meta_old.get("format") == "GeoTIFF" and not meta_old.get("pixel_size_degrees")
-            else "Notebook fallback (10 m/pixel) — geographic CRS detected"
+            else "Notebook fallback (10 m/pixel) - geographic CRS detected"
             if meta_old.get("pixel_size_degrees")
             else "Notebook fallback resolution: 10 m/pixel"
         )
@@ -188,12 +188,12 @@ def _process_job(
 
         generate_land_cover_map(
             map_old, class_names,
-            f"Land Cover Map — {old_year}",
+            f"Land Cover Map - {old_year}",
             map_old_path,
         )
         generate_land_cover_map(
             map_new, class_names,
-            f"Land Cover Map — {new_year}",
+            f"Land Cover Map - {new_year}",
             map_new_path,
         )
         generate_deforestation_map(

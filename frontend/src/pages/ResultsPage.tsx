@@ -240,7 +240,7 @@ export default function ResultsPage() {
           </div>
         )}
 
-        {/* KPI Row — 3 cards centered */}
+        {/* KPI Row - 3 cards centered */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8 max-w-3xl mx-auto w-full">
           <KpiCard
             icon={TrendingDown}
@@ -278,12 +278,12 @@ export default function ResultsPage() {
           </div>
           <div className="grid md:grid-cols-3 gap-4 mb-4">
             <ImageCard
-              title={`Satellite Image — ${old_year}`}
+              title={`Satellite Image - ${old_year}`}
               src={getOutputImageUrl(maps.old_satellite)}
               alt={`Satellite ${old_year}`}
             />
             <ImageCard
-              title={`Satellite Image — ${new_year}`}
+              title={`Satellite Image - ${new_year}`}
               src={getOutputImageUrl(maps.new_satellite)}
               alt={`Satellite ${new_year}`}
             />
@@ -307,12 +307,12 @@ export default function ResultsPage() {
           <div className="grid md:grid-cols-3 gap-4">
             <div className="md:col-span-2 grid sm:grid-cols-2 gap-4">
               <ImageCard
-                title={`Land Cover Map — ${old_year}`}
+                title={`Land Cover Map - ${old_year}`}
                 src={getOutputImageUrl(maps.old_land_cover)}
                 alt={`Land cover ${old_year}`}
               />
               <ImageCard
-                title={`Land Cover Map — ${new_year}`}
+                title={`Land Cover Map - ${new_year}`}
                 src={getOutputImageUrl(maps.new_land_cover)}
                 alt={`Land cover ${new_year}`}
               />

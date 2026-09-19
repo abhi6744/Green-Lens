@@ -195,7 +195,7 @@ export default function HomePage() {
                 <div className="mt-3 p-3 bg-forest-50 rounded-lg border border-forest-100">
                   <p className="text-xs text-forest-700">
                     <strong>Preprocessing is automatic.</strong> Your image is standardized for the 
-                    trained model before analysis — no manual conversion needed.
+                    trained model before analysis - no manual conversion needed.
                   </p>
                 </div>
               </div>
@@ -287,7 +287,7 @@ export default function HomePage() {
               <p className="text-gray-600 leading-relaxed mb-4">
                 GreenLens uses a ResNet50 model trained on the EuroSAT dataset to classify land cover 
                 types from satellite imagery. By comparing classifications between two time periods, 
-                it identifies regions where forest has been converted to other land uses — a critical 
+                it identifies regions where forest has been converted to other land uses - a critical 
                 signal for deforestation monitoring.
               </p>
               <div className="grid grid-cols-2 gap-4">
@@ -333,7 +333,7 @@ export default function HomePage() {
             Supporting Forest Conservation with AI
           </h2>
           <p className="text-forest-200 max-w-2xl mx-auto mb-12">
-            Forests are not just trees — they are our shared tomorrow. 
+            Forests are not just trees - they are our shared tomorrow. 
             GreenLens provides the tools to monitor, quantify, and communicate 
             deforestation at scale.
           </p>

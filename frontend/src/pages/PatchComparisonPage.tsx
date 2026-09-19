@@ -160,7 +160,7 @@ export default function PatchComparisonPage() {
             {/* Old map */}
             <div className="map-card">
               <div className="px-4 py-2 border-b border-gray-100">
-                <p className="text-xs font-semibold text-gray-700">Land Cover Map — {old_year}</p>
+                <p className="text-xs font-semibold text-gray-700">Land Cover Map - {old_year}</p>
               </div>
               <div className="bg-gray-900 aspect-square">
                 <img
@@ -173,7 +173,7 @@ export default function PatchComparisonPage() {
             {/* New map */}
             <div className="map-card">
               <div className="px-4 py-2 border-b border-gray-100">
-                <p className="text-xs font-semibold text-gray-700">Land Cover Map — {new_year}</p>
+                <p className="text-xs font-semibold text-gray-700">Land Cover Map - {new_year}</p>
               </div>
               <div className="bg-gray-900 aspect-square">
                 <img
@@ -211,7 +211,7 @@ export default function PatchComparisonPage() {
         <div className="card p-4">
           <div className="flex items-center justify-between mb-3">
             <h3 className="font-semibold text-gray-900 text-sm">
-              Patch Thumbnails — click to view details
+              Patch Thumbnails - click to view details
             </h3>
             <div className="flex items-center gap-2 text-xs text-gray-500">
               <button

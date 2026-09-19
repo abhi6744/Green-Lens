@@ -1,25 +1,25 @@
-# 🌿 GreenLens — Satellite Insights for a Greener Planet
+# 🌿 GreenLens - Satellite Insights for a Greener Planet
 
-GreenLens is a full-stack AI-powered web application for satellite image change detection, specialising in **deforestation monitoring**. Upload two GeoTIFF satellite images from different time periods and GreenLens will classify land cover, detect forest loss, and generate visual maps — all powered by a trained **ResNet50** model.
+GreenLens is a full-stack AI-powered web application for satellite image change detection, specialising in **deforestation monitoring**. Upload two GeoTIFF satellite images from different time periods and GreenLens will classify land cover, detect forest loss, and generate visual maps - all powered by a trained **ResNet50** model.
 
 ---
 
 ## ✨ Features
 
 - 🛰️ **Upload two GeoTIFF images** (old and new year) directly in the browser
-- 🤖 **ResNet50 inference** — classifies each 64×64 patch into one of 10 EuroSAT land cover types
-- 🗺️ **Land cover maps** — colour-coded patch-level classification visualisations for both images
-- 🔴 **Deforestation overlay** — Gaussian-smoothed red overlay highlighting Forest → target class transitions
-- 📊 **KPI dashboard** — Deforestation Rate, Changed Patches, and Model Confidence
-- 🔍 **Patch comparison view** — click any patch to inspect its old/new class, confidence scores, and thumbnail
-- 📥 **Download results** — export all maps as a ZIP or download the JSON report
-- ⚡ **Real-time progress** — live processing stage updates while analysis runs in the background
+- 🤖 **ResNet50 inference** - classifies each 64×64 patch into one of 10 EuroSAT land cover types
+- 🗺️ **Land cover maps** - colour-coded patch-level classification visualisations for both images
+- 🔴 **Deforestation overlay** - Gaussian-smoothed red overlay highlighting Forest → target class transitions
+- 📊 **KPI dashboard** - Deforestation Rate, Changed Patches, and Model Confidence
+- 🔍 **Patch comparison view** - click any patch to inspect its old/new class, confidence scores, and thumbnail
+- 📥 **Download results** - export all maps as a ZIP or download the JSON report
+- ⚡ **Real-time progress** - live processing stage updates while analysis runs in the background
 
 ---
 
 ## 🏗️ Architecture
 
-The application runs as a **single unified service** — the FastAPI backend serves both the REST API and the built React frontend.
+The application runs as a **single unified service** - the FastAPI backend serves both the REST API and the built React frontend.
 
 ```
 project/
@@ -89,7 +89,7 @@ GeoTIFF (bands 1, 2, 3)
         ↓
   ToTensor + ImageNet normalisation
         ↓
-  ResNet50 (10-class fc layer) — batch inference
+  ResNet50 (10-class fc layer) - batch inference
         ↓
   argmax → class index, softmax max → confidence
         ↓
@@ -102,7 +102,7 @@ GeoTIFF (bands 1, 2, 3)
   Statistics, land cover maps, JSON report
 ```
 
-### Land Cover Classes (EuroSAT — 10 classes)
+### Land Cover Classes (EuroSAT - 10 classes)
 
 | Index | Class                  |
 |-------|------------------------|
@@ -177,7 +177,7 @@ python -m uvicorn app.main:app --port 8000
 
 Then open **http://localhost:8000** in your browser.
 
-That's it — one command runs everything.
+That's it - one command runs everything.
 
 ---
 
@@ -193,10 +193,10 @@ That's it — one command runs everything.
    - Satellite image comparison (old, new, deforestation overlay)
    - Land cover classification maps (old and new)
    - KPI cards: Deforestation Rate, Changed Patches, Model Confidence
-   - Patch-level comparison — click any patch for class labels and confidence
+   - Patch-level comparison - click any patch for class labels and confidence
 8. **Download:**
-   - `Download Images (ZIP)` — all maps + JSON report in one file
-   - `Download Report` — JSON report only
+   - `Download Images (ZIP)` - all maps + JSON report in one file
+   - `Download Report` - JSON report only
 
 ---
 
@@ -314,7 +314,7 @@ Only **GeoTIFF** files are accepted:
 - `.tiff`
 - `.geotiff`
 
-The file must contain **at least 3 bands** (bands 1, 2, 3 are used as R, G, B). PNG and JPG are **not accepted** — satellite imagery must retain full spectral precision.
+The file must contain **at least 3 bands** (bands 1, 2, 3 are used as R, G, B). PNG and JPG are **not accepted** - satellite imagery must retain full spectral precision.
 
 ### Resolution Handling
 
@@ -378,8 +378,8 @@ python -m uvicorn app.main:app --port 8000 --reload
 
 The following directories are gitignored and should **not** be committed:
 
-- `backend/outputs/` — generated analysis maps (created at runtime)
-- `backend/temp/` — temporary upload files (auto-cleaned after each job)
+- `backend/outputs/` - generated analysis maps (created at runtime)
+- `backend/temp/` - temporary upload files (auto-cleaned after each job)
 - `frontend/node_modules/`
 - `frontend/dist/`
 - `**/__pycache__/`
@@ -389,15 +389,15 @@ The following directories are gitignored and should **not** be committed:
 
 ## 📝 Notes & Limitations
 
-- **No persistent database** — analysis results are stored as files in `backend/outputs/` for the duration of the server session. Restarting the server clears in-memory job state (files remain on disk but the `/api/results/{job_id}` endpoint will return 404 until the job is re-run).
-- **CPU inference** — inference runs on CPU by default. If a CUDA GPU is available, PyTorch will automatically use it.
-- **Image alignment** — GreenLens assumes old and new images cover the same geographic area. If dimensions differ, both images are cropped to the common minimum size. No spatial reprojection is performed.
-- **EuroSAT training distribution** — model accuracy is highest for Sentinel-2 imagery matching the EuroSAT dataset resolution (~10 m/pixel, RGB bands).
+- **No persistent database** - analysis results are stored as files in `backend/outputs/` for the duration of the server session. Restarting the server clears in-memory job state (files remain on disk but the `/api/results/{job_id}` endpoint will return 404 until the job is re-run).
+- **CPU inference** - inference runs on CPU by default. If a CUDA GPU is available, PyTorch will automatically use it.
+- **Image alignment** - GreenLens assumes old and new images cover the same geographic area. If dimensions differ, both images are cropped to the common minimum size. No spatial reprojection is performed.
+- **EuroSAT training distribution** - model accuracy is highest for Sentinel-2 imagery matching the EuroSAT dataset resolution (~10 m/pixel, RGB bands).
 
 ---
 
 ## 🌍 About
 
-GreenLens was built as a complete ML deployment project — taking a trained ResNet50 model from a Jupyter notebook all the way to a production-style web application with a real inference pipeline, REST API, and interactive UI.
+GreenLens was built as a complete ML deployment project - taking a trained ResNet50 model from a Jupyter notebook all the way to a production-style web application with a real inference pipeline, REST API, and interactive UI.
 
 > *"Data today. Forests tomorrow."*

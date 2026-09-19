@@ -85,8 +85,8 @@ export default function ProcessingPage() {
     };
   }, [jobId, navigate]);
 
-  const oldYear = state?.oldYear || '—';
-  const newYear = state?.newYear || '—';
+  const oldYear = state?.oldYear || '-';
+  const newYear = state?.newYear || '-';
   const oldFilename = state?.oldFilename || 'old_image';
   const newFilename = state?.newFilename || 'new_image';
 
@@ -127,7 +127,7 @@ export default function ProcessingPage() {
                 {/* Old image card */}
                 <div className="border border-gray-200 rounded-xl p-4">
                   <p className="text-xs font-semibold text-gray-600 mb-2">
-                    Old Image {oldYear !== '—' ? `(${oldYear})` : ''}
+                    Old Image {oldYear !== '-' ? `(${oldYear})` : ''}
                   </p>
                   <div className="h-32 bg-forest-900 rounded-lg flex items-center justify-center mb-3">
                     <FileImage className="w-10 h-10 text-forest-300" />
@@ -143,7 +143,7 @@ export default function ProcessingPage() {
                 {/* New image card */}
                 <div className="border border-gray-200 rounded-xl p-4">
                   <p className="text-xs font-semibold text-gray-600 mb-2">
-                    New Image {newYear !== '—' ? `(${newYear})` : ''}
+                    New Image {newYear !== '-' ? `(${newYear})` : ''}
                   </p>
                   <div className="h-32 bg-forest-900 rounded-lg flex items-center justify-center mb-3">
                     <FileImage className="w-10 h-10 text-forest-300" />
